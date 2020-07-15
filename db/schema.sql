@@ -45,6 +45,7 @@ CREATE TABLE event
     PRIMARY KEY (id)
 );
 
+
 CREATE TABLE event_body
 (
     id int NOT NULL AUTO_INCREMENT,
