@@ -7,6 +7,11 @@ $(document).ready(() => {
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", event => {
     event.preventDefault();
+    const passValidation = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    /*
+    Checks password between 6 to 20 chacters which contain at least one
+    numberic digit, one uppercase and one lowercase letter
+    */
     const userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
@@ -14,7 +19,10 @@ $(document).ready(() => {
 
     if (!userData.email || !userData.password) {
       return;
+    } else if (userData.password.match(passValidation)) {
+      return;
     }
+
     // If we have an email and password, run the signUpUser function
     signUpUser(userData.email, userData.password);
     emailInput.val("");
