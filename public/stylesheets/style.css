@@ -8,7 +8,9 @@ form.login {
 
 body {
   background: #333;
-  color: #fff; }
+  color: #fff;
+  overflow: hidden;
+ }
 
 .navbar {
   border-bottom: #008ed6 3px solid;
@@ -25,7 +27,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 700px; }
+    min-height: 800px; }
   #home-section .home-inner {
     padding-top: 150px; }
   #home-section .card-form {
@@ -40,6 +42,16 @@ body {
     #headers{
       color:#008ed6
     }
+    .search{
+      padding: 6px;
+      border: none;
+      margin-top: 8px;
+      margin-right: 16px;
+      font-size: 17px;
+      border-radius: 20px;
+      
+    }
+  
 
 
 
