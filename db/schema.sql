@@ -12,16 +12,16 @@ CREATE TABLE volunteer
     city varchar(50) NOT NULL,
     state varchar(50) NOT NULL,
     age int NOT NULL,
-	PRIMARY KEY (id),
-    --UNIQUE KEY `email` (`email`)
+	PRIMARY KEY (id)
+    -- UNIQUE KEY `email` (`email`)
 );
 
-CREATE TABLE organization
+CREATE TABLE organizations
 (
 	id int NOT NULL AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
     type varchar(255),
-    about varchar,
+    about varchar(255),
 	PRIMARY KEY (id)
 );
 
@@ -41,7 +41,8 @@ CREATE TABLE event
     state varchar(50) NOT NULL,
     zip varchar(10) NOT NULL,
     time_frame varchar(20) NOT NULL,
-    posted_date varchar(20) NOT NULL
+    posted_date varchar(20) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE event_body
