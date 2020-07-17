@@ -1,0 +1,38 @@
+
+{{login}}
+<div id="home">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <a href="/" class="navbar-brand">Volunteer</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <input class="search" type="text" placeholder="Search..">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signup" class="nav-link">Sign Up</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="/login" class="nav-link">
+                         Log In</a>
+                         
+                        {{!-- <a{{#if login}}log in href="/login" class="nav-link"
+                         {{else}}Log Out href="/" class="nav-link">{{/if}}</a> --}}
+                    </li>
+                     <li class="nav-item">
+                        <a href="/logout" class="nav-link">Log Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">About Us</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
