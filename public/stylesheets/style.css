@@ -18,7 +18,7 @@ body {
 
 #home-section {
   background: url("/img/home.jpg") no-repeat;
-  min-height: 700px;
+  min-height: 800px;
   background-size: cover;
   background-attachment: fixed; }
   #home-section .dark-overlay {
