@@ -1,5 +1,5 @@
 
-{{login}}
+
 <div id="home">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <div class="container">
@@ -19,15 +19,11 @@
                         <a href="/signup" class="nav-link">Sign Up</a>
                     </li>
                     <li class="nav-item" >
-                        <a href="/login" class="nav-link">
-                         Log In</a>
-                         
-                        {{!-- <a{{#if login}}log in href="/login" class="nav-link"
-                         {{else}}Log Out href="/" class="nav-link">{{/if}}</a> --}}
+                       
+                        {{#unless login}}<a href="/login" class="nav-link">Log In</a>
+                         {{else}}<a href="/logout" class="nav-link">Log out</a>{{/unless}}
                     </li>
-                     <li class="nav-item">
-                        <a href="/logout" class="nav-link">Log Out</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a href="/about" class="nav-link">About Us</a>
                     </li>
