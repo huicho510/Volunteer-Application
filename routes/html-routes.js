@@ -2,6 +2,7 @@
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
+  
   app.get("/", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -38,7 +39,6 @@ module.exports = function(app) {
     });
   });
   app.get("/search", (req, res) => {
-   
     res.render("search", {
       login: userLoggedIn(req)
     });
