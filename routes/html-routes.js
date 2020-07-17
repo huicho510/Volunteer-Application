@@ -37,6 +37,11 @@ module.exports = function(app) {
       login: userLoggedIn(req)
     });
   });
+  app.get("/search", (req, res) => {
+    res.render("search", {
+      login: userLoggedIn(req)
+    });
+  });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
