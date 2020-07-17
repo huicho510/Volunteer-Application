@@ -38,7 +38,6 @@ module.exports = function(app) {
     });
   });
   app.get("/search", (req, res) => {
-   
     res.render("search", {
       login: userLoggedIn(req)
     });
