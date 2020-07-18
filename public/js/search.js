@@ -39,8 +39,19 @@ function createNewRow(opp) {
     [
       "<li class='list-group-item new-item'>",
       "<span>",
-      opp.text,
-      "</span>",
+      "<h5>WHERE: </h5>",
+      opp.address,
+      "<p>",
+      opp.city,
+      ", " + opp.state,
+      " " + opp.zip,
+      "</p>",
+      "<p>",
+      "Posted: " + opp.createdAt,
+      "</p>",
+      "<p>",
+      "Updated: " + opp.updatedAt,
+      "</p>",
       "<input type='text' class='edit' style='display: none;'>",
       "</li>"
     ].join("")
