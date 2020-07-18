@@ -35,7 +35,7 @@ $(document).ready(() => {
 });
 
 function createNewRow(opp) {
-  let $newInputRow = $(
+  const $newInputRow = $(
     [
       "<li class='list-group-item new-item'>",
       "<span>",
