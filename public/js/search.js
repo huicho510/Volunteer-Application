@@ -11,6 +11,7 @@ $(document).ready(() => {
   
   // Our initial todos array
   let opp = [];
+
   
   // Getting todos from database when page loads
     
@@ -39,6 +40,7 @@ function createNewRow(opp) {
     [
       "<li class='list-group-item new-item'>",
       "<span>",
+      opp.event_name,
       "<h5>WHERE: </h5>",
       opp.address,
       "<p>",
