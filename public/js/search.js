@@ -10,7 +10,7 @@ $(document).ready(() => {
   // $(document).on("submit", "#todo-form", insertTodo);
   
   // Our initial todos array
-  let event = [];
+  let opp = [];
   
   // Getting todos from database when page loads
     
@@ -18,18 +18,37 @@ $(document).ready(() => {
   function initializeRows() {
     $eventContainer.empty();
     const rowsToAdd = [];
-    for (let i = 0; i < event.length; i++) {
-      rowsToAdd.push(createNewRow(event[i]));
+    for (let i = 0; i < opp.length; i++) {
+      rowsToAdd.push(createNewRow(opp[i]));
     }
     $eventContainer.prepend(rowsToAdd);
   }
 
   function getEvents() {
     $.get("/api/event", data => {
-      event = data;
+      opp = data;
+      console.log(opp);
       initializeRows();
     });
   }
   getEvents();
 });
 
+function createNewRow(opp) {
+  let $newInputRow = $(
+    [
+      "<li class='list-group-item new-item'>",
+      "<span>",
+      opp.text,
+      "</span>",
+      "<input type='text' class='edit' style='display: none;'>",
+      "</li>"
+    ].join("")
+  );
+
+  $newInputRow.find("button.delete").data("id", opp.id);
+  $newInputRow.find("input.edit").css("display", "none");
+  $newInputRow.data("event", opp);
+
+  return $newInputRow;
+}

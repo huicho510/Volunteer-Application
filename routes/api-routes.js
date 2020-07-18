@@ -51,15 +51,16 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/search", (req, res) => {
+  app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
+    console.log(db);
     db.Event.findAll({}).then(dbEvent => {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbEvent);
     });
   });
 
-  app.post("/api/search", (req, res) => {
+  app.post("/api/event", (req, res) => {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
