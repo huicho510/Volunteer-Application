@@ -9,7 +9,7 @@ form.login {
 body {
   background: #333;
   color: #fff;
-  overflow: hidden;
+
  }
 
 .navbar {
@@ -18,7 +18,7 @@ body {
 
 #home-section {
   background: url("/img/home.jpg") no-repeat;
-  min-height: 800px;
+  min-height: 1000px;
   background-size: cover;
   background-attachment: fixed; }
   #home-section .dark-overlay {
@@ -27,7 +27,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 800px; }
+    min-height: 1000px; }
   #home-section .home-inner {
     padding-top: 150px; }
   #home-section .card-form {
@@ -42,7 +42,7 @@ body {
     #headers{
       color:#008ed6
     }
-    .search{
+    .new-search{
       padding: 6px;
       border: none;
       margin-top: 8px;
@@ -51,7 +51,25 @@ body {
       border-radius: 20px;
       
     }
-  
+
+    span{
+      color:white;
+    }
+
+    .time{
+      margin-left: 650px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+   
+  .list-group-item{
+    background: transparent;
+    border:2px solid  #008ed6;
+  }
+  .icon{
+    margin-left:1000px;
+  }
 
 
 
