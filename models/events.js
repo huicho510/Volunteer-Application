@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Event = sequelize.define("event", {
+  const Event = sequelize.define("Event", {
     event_name: {
       type: DataTypes.STRING,
       // AllowNull is a flag that restricts a event from being entered if it doesn't
@@ -71,6 +71,15 @@ module.exports = function(sequelize, DataTypes) {
 
       validate: {
         len: [1, 20]
+      }
+    },
+    details: {
+      type: DataTypes.STRING,
+
+      allowNull: false,
+
+      validate: {
+        len: [1, 2000]
       }
     }
   });
