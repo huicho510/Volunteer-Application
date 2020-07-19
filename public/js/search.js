@@ -11,6 +11,7 @@ $(document).ready(() => {
   
   // Our initial todos array
   let opp = [];
+
   
   // Getting todos from database when page loads
     
