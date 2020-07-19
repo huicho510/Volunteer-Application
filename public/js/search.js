@@ -33,15 +33,6 @@ $(document).ready(() => {
   }
   getEvents();
 });
-  function getDetails() {
-    $.get("/api/eventbody", data => {
-      opp = data;
-      console.log(opp);
-      initializeRows();
-    });
-  }
-  
-
 
 function createNewRow(opp) {
   const $newInputRow = $(
