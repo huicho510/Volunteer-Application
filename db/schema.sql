@@ -40,15 +40,8 @@ CREATE TABLE event
     city varchar(50) NOT NULL,
     state varchar(50) NOT NULL,
     zip varchar(10) NOT NULL,
+    details varchar(2000) NOT NULL,
     time_frame varchar(20) NOT NULL,
     posted_date varchar(20) NOT NULL,
-    PRIMARY KEY (id)
-);
-
-
-CREATE TABLE event_body
-(
-    id int NOT NULL AUTO_INCREMENT,
-    description text,
     PRIMARY KEY (id)
 );

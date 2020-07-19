@@ -33,13 +33,24 @@ $(document).ready(() => {
   }
   getEvents();
 });
+  function getDetails() {
+    $.get("/api/eventbody", data => {
+      opp = data;
+      console.log(opp);
+      initializeRows();
+    });
+  }
+  
+
 
 function createNewRow(opp) {
   const $newInputRow = $(
     [
       "<li class='list-group-item new-item'>",
       "<span>",
-      "<h5>WHERE: </h5>",
+      "<h5>",
+      opp.event_name,
+      "</h5>",
       opp.address,
       "<p>",
       opp.city,
@@ -47,12 +58,14 @@ function createNewRow(opp) {
       " " + opp.zip,
       "</p>",
       "<p>",
+      opp.details,
+      "</p>",  
+      "<p class = time>",
       "Posted: " + opp.createdAt,
       "</p>",
-      "<p>",
+      "<p class = time>",
       "Updated: " + opp.updatedAt,
       "</p>",
-      "<input type='text' class='edit' style='display: none;'>",
       "</li>"
     ].join("")
   );
