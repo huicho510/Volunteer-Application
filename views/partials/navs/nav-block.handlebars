@@ -17,16 +17,18 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/signup" class="nav-link">Sign Up</a>
+                        <a href="/events" class="nav-link">All Events</a>
                     </li>
-                    <li class="nav-item">
-
-                        {{#unless login}}<a href="/login" class="nav-link">Log In</a>
-                        {{else}}<a href="/logout" class="nav-link">Log out</a>{{/unless}}
-                    </li>
-
                     <li class="nav-item">
                         <a href="/about" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        {{#unless login}}<a href="/signup" class="nav-link">Sign Up</a>
+                        {{else}}{{/unless}}
+                    </li>
+                    <li class="nav-item">
+                        {{#unless login}}<a href="/login" class="nav-link">Log In</a>
+                        {{else}}<a href="/logout" class="nav-link">Log out</a>{{/unless}}
                     </li>
 
                 </ul>
