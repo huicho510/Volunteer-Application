@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-//const Query = require("../js/search");
+const query = require("../public/js/search");
 const Op = require("sequelize").Op;
 
 module.exports = function(app) {
@@ -32,12 +32,12 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/search", (req, res) => {
+  app.get("/api/search", (req, res) => {
     db.Event.findAll({
       limit: 10,
       where: {
-        title: { [Op.like]: "%" + Query + "%" }, 
-        details: { [Op.like]:  "%" + Query + "%" } }
+        title: { [Op.like]: "%" + query + "%" }, 
+        details: { [Op.like]:  "%" + query + "%" } }
     }) 
       .then(() => {
         res.redirect(307, "/api/search"); //IDK where it goes after the search term
@@ -46,6 +46,7 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+  
 
   // Route for logging user out
   app.get("/logout", (req, res) => {

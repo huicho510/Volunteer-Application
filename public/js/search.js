@@ -1,8 +1,7 @@
 $(document).ready(() => {
-  const { query } = require("express");
-// Getting a reference to the input field where user adds a new todo;
-// let $newItemInput = $("input.new-search");
-// Our new todos will go inside the todoContainer;
+  // Getting a reference to the input field where user adds a new todo;
+  // let $newItemInput = $("input.new-search");
+  // Our new todos will go inside the todoContainer;
   const searchInput = $("input#search-input");
   const $searchContainer = $(".search-container");
   // Adding event listeners for deleting, editing, and adding todos;
@@ -19,18 +18,17 @@ $(document).ready(() => {
   
   searchForm.on("submit", event => {
     event.preventDefault();
-    const searchQuery = {
-      query: searchInput.val().trim() 
-    };
-    if (!searchQuery.query) {
+    const searchQuery = searchInput.val().trim();
+    console.log(searchQuery);
+    if (!searchQuery) {
       return;
     }
-    search(query);
+    search(searchQuery);
   });
 
-  function search(query) {
+  function search(searchQuery) {
     $.post("/api/search", {
-      query: query
+      query: searchQuery
     })
       .then(() => {
         window.location.replace("/search");
@@ -59,7 +57,7 @@ $(document).ready(() => {
   }
 
   function getEvents() {
-    $.get("/api/event", data => {
+    $.get("/api/search", data => {
       opp = data;
       console.log(opp);
       initializeRows();
