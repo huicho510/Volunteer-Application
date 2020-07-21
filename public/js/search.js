@@ -9,7 +9,7 @@ $(document).ready(() => {
   // $(document).on("click", ".new-item", selectEvent);
   // $(document).on("blur", ".new-item", cancelEdit);
   // $(document).on("submit", "#todo-form", insertTodo);
-  const searchForm = $("a#search")
+  const searchForm = $("a#search");
   
   // Our initial todos array
   let opp = [];
