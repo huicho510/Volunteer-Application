@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const Query = require("../public/js/search");
-const Op = Sequelize.Op;
+const Op = require("sequelize").Op;
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.

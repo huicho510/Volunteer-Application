@@ -1,6 +1,5 @@
-const { query } = require("express");
-
-$(document).ready(() => {
+/* $(document).ready(() => {
+  const { query } = require("express");
 // Getting a reference to the input field where user adds a new todo;
 // let $newItemInput = $("input.new-search");
 // Our new todos will go inside the todoContainer;
@@ -67,9 +66,9 @@ $(document).ready(() => {
     });
   }
   getEvents();
-});
+}); */
 
-function createNewRow(opp) {
+/* function createNewRow(opp) {
   const $newInputRow = $(
     [
       "<li class='list-group-item new-item'>",
@@ -102,3 +101,4 @@ function createNewRow(opp) {
 
   return $newInputRow;
 }
+ */
