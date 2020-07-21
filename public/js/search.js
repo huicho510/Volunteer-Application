@@ -1,4 +1,4 @@
-/* $(document).ready(() => {
+$(document).ready(() => {
   const { query } = require("express");
 // Getting a reference to the input field where user adds a new todo;
 // let $newItemInput = $("input.new-search");
@@ -50,7 +50,7 @@
 
 
   function initializeRows() {
-    $eventContainer.empty();
+    $searchContainer.empty();
     const rowsToAdd = [];
     for (let i = 0; i < opp.length; i++) {
       rowsToAdd.push(createNewRow(opp[i]));
@@ -101,4 +101,3 @@ function createNewRow(opp) {
 
   return $newInputRow;
 }
- */
