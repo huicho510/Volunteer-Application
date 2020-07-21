@@ -38,9 +38,15 @@ module.exports = function(app) {
       limit: 10,
       where: {
         title: { [Op.like]: "%" + req + "%" }, 
-        details: { [Op.like]:  "%" + req + "%" } }
+        details: { [Op.like]:  "%" + req + "%" },
+        address: { [Op.like]:  "%" + req + "%" },
+        city: { [Op.like]:  "%" + req + "%" },
+        state: { [Op.like]:  "%" + req + "%" },
+        zip: { [Op.like]:  "%" + req + "%" } }
     })
       .then((dbEvent) => {
+        console.log(req);
+        console.log(res);
         res.json(dbEvent);
       })
       .catch(err => {
