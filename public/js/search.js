@@ -2,6 +2,7 @@ $(document).ready(() => {
   // Getting a reference to the input field where user adds a new todo;
   // let $newItemInput = $("input.new-search");
   // Our new todos will go inside the todoContainer;
+  const searchForm = $("form.search-form");
   const searchInput = $("input#search-input");
   const $searchContainer = $(".search-container");
   // Adding event listeners for deleting, editing, and adding todos;
