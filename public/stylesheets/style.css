@@ -70,9 +70,12 @@ body {
   .icon{
     margin-left:1000px;
   }
-  .card{
+  .card, .add{
     opacity: 0.8;
-    background-color:rgba(228, 233, 237, 1);
+    background-color: rgba(46, 49, 49);
+    font-size: 24px;
+    border:2px solid  #008ed6;
+    font-weight: bold;
   }
 
   .about{
