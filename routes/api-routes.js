@@ -1,6 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const Query = require("../public/js/search");
+const Op = Sequelize.Op;
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -24,6 +26,21 @@ module.exports = function(app) {
     })
       .then(() => {
         res.redirect(307, "/api/login");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/search", (req, res) => {
+    db.events.findAll({
+      limit: 10,
+      where: {
+        title: { [Op.like]: "%" + Query + "%" }, 
+        description: { [Op.like]:  "%" + Query + "%" } }
+    }) 
+      .then(() => {
+        res.redirect(307, "/api/search"); //IDK where it goes after the search term
       })
       .catch(err => {
         res.status(401).json(err);

@@ -1,11 +1,27 @@
 module.exports = function(sequelize, DataTypes) {
   const Event = sequelize.define("Event", {
-    title: {
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    passw: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false
     },
     address: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     city: {
@@ -16,20 +32,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    zip: {
+    age: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    timeFrame: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    postedDate: {
-      type: DataTypes.STRING,
       allowNull: false
     }
   });
