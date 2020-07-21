@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const Query = require("../public/js/search");
+//const Query = require("../js/search");
 const Op = require("sequelize").Op;
 
 module.exports = function(app) {
@@ -37,7 +37,7 @@ module.exports = function(app) {
       limit: 10,
       where: {
         title: { [Op.like]: "%" + Query + "%" }, 
-        description: { [Op.like]:  "%" + Query + "%" } }
+        details: { [Op.like]:  "%" + Query + "%" } }
     }) 
       .then(() => {
         res.redirect(307, "/api/search"); //IDK where it goes after the search term

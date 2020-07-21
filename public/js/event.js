@@ -49,7 +49,7 @@ function createNewRow(opp) {
       " " + opp.zip,
       "</p>",
       "<p>",
-      opp.description,
+      opp.details,
       "</p>",  
       "<p class = time>",
       "Posted: " + opp.timeFrame,

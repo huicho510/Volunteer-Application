@@ -20,7 +20,7 @@ CREATE TABLE organizations
 	id int NOT NULL AUTO_INCREMENT,
 	title varchar(255) NOT NULL,
     catagory varchar(255),
-    description varchar(255), 
+    details varchar(255), 
 	PRIMARY KEY (id)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE events
     city varchar(50) NOT NULL,
     state varchar(50) NOT NULL, 
     zip int(5) NOT NULL,
-    description varchar(2000) NOT NULL, 
+    details varchar(2000) NOT NULL, 
     timeFrame varchar(20) NOT NULL,
     postedDate varchar(20) NOT NULL,
     PRIMARY KEY (id)
