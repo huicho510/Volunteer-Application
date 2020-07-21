@@ -1,7 +1,10 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+
+
 /* const query = require("../public/js/search"); */
+
 const Op = require("sequelize").Op;
 
 module.exports = function(app) {
@@ -72,9 +75,7 @@ module.exports = function(app) {
   app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
     console.log(db);
-    db.Event.findAll({
-
-    }).then(dbEvent => {
+    db.Event.findAll({}).then(dbEvent => {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbEvent);
     })
