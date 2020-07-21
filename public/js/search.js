@@ -32,11 +32,11 @@ $(document).ready(() => {
   });
 
   function search(searchQuery) {
-    $.post("/api/search", {
-      query: searchQuery
+    $.get("/api/search", {
+      searchQuery: searchQuery,
     })
       .then(() => {
-        window.location.replace("/search");
+        initializeRows();
       })
       .catch(searchErr);
   }
@@ -58,7 +58,7 @@ $(document).ready(() => {
     for (let i = 0; i < opp.length; i++) {
       rowsToAdd.push(createNewRow(opp[i]));
     }
-    $eventContainer.prepend(rowsToAdd);
+    $searchContainer.prepend(rowsToAdd);
   }
 
   function getEvents() {
