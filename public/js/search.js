@@ -2,21 +2,22 @@ $(document).ready(() => {
   // Getting a reference to the input field where user adds a new todo;
   // let $newItemInput = $("input.new-search");
   // Our new todos will go inside the todoContainer;
-  const searchInput = $("input#search-input");
+  const searchInput = $("input.new-search");
   const $searchContainer = $(".search-container");
   // Adding event listeners for deleting, editing, and adding todos;
   // $(document).on("click", "button.delete", deleteEvent);
   // $(document).on("click", ".new-item", selectEvent);
   // $(document).on("blur", ".new-item", cancelEdit);
   // $(document).on("submit", "#todo-form", insertTodo);
+  const searchForm = $("a#search")
   
   // Our initial todos array
   let opp = [];
 
-  
+  search();
   // Getting todos from database when page loads
   
-  searchForm.on("submit", event => {
+  searchForm.on("click", event => {
     event.preventDefault();
     const searchQuery = searchInput.val().trim();
     console.log(searchQuery);

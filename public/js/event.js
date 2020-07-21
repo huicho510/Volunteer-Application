@@ -2,6 +2,7 @@ $(document).ready(() => {
   // Getting a reference to the input field where user adds a new todo;
   // let $newItemInput = $("input.new-search");
   // Our new todos will go inside the todoContainer;
+  
 
   const $eventContainer = $(".event-container");
   // Adding event listeners for deleting, editing, and adding todos;
@@ -13,7 +14,7 @@ $(document).ready(() => {
   // Our initial todos array
   let opp = [];
   
-    
+  getEvents();
   // Getting todos from database when page loads
   function initializeRows() {
     $eventContainer.empty();
@@ -25,13 +26,12 @@ $(document).ready(() => {
   }
   
   function getEvents() {
-    $.get("/api/event", data => {
-      opp = data;
-      console.log(opp);
+    $.get("/api/event", user => {
+      opp = user;
+      console.log(user);
       initializeRows();
     });
   }
-  getEvents();
 });
   
 function createNewRow(opp) {
@@ -64,8 +64,8 @@ function createNewRow(opp) {
     ].join("")
   );
   
-  $newInputRow.find("button.delete").data("id", opp.id);
-  $newInputRow.find("input.edit").css("display", "none");
+ 
+ 
   $newInputRow.data("event", opp);
   
   return $newInputRow;
