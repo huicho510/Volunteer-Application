@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/search", (req, res) => {
-    db.events.findAll({
+    db.Events.findAll({
       limit: 10,
       where: {
         title: { [Op.like]: "%" + Query + "%" }, 
@@ -71,10 +71,15 @@ module.exports = function(app) {
   app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
     console.log(db);
-    db.Event.findAll({}).then(dbEvent => {
+    db.Events.findAll({
+
+    }).then(dbEvent => {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbEvent);
-    });
+    })
+      .catch(err => {
+        res.status(401).json(err);
+      });
   });
 
   app.post("/api/event", (req, res) => {

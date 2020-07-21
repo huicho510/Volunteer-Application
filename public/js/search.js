@@ -66,9 +66,9 @@
     });
   }
   getEvents();
-}); */
+});
 
-/* function createNewRow(opp) {
+function createNewRow(opp) {
   const $newInputRow = $(
     [
       "<li class='list-group-item new-item'>",
