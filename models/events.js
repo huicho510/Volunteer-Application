@@ -1,74 +1,57 @@
 module.exports = function(sequelize, DataTypes) {
-  const Event = sequelize.define("event", {
-    event_name: {
+  const Event= sequelize.define("Event", {
+    title: {
       type: DataTypes.STRING,
-      // AllowNull is a flag that restricts a event from being entered if it doesn't
-      // have a text value
       allowNull: false,
-      // len is a validation that checks that our event is between 1 and 100 characters
       validate: {
         len: [1, 100]
       }
     },
     address: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
         len: [1, 50]
       }
     },
     city: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
         len: [1, 50]
       }
     },
     state: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
-        len: [1, 50]
+        len: [2]
       }
     },
     zip: {
-      type: DataTypes.STRING,
-
+      type: DataTypes.INTEGER,
       allowNull: false,
-
       validate: {
-        len: [1, 10]
+        len: [5]
       }
     },
-    state: {
+    details: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
-        len: [1, 50]
+        len: [1, 2000]
       }
     },
-    time_frame: {
+    timeFrame: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
         len: [1, 20]
       }
     },
-    posted_date: {
+    postedDate: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
         len: [1, 20]
       }

@@ -31,6 +31,12 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/events", (req, res) => {
+    res.render("events", {
+      login: userLoggedIn(req)
+    });
+  });
+
   app.get("/about", (req, res) => {
     // If the user already has an account send them to the members page
 
@@ -38,6 +44,7 @@ module.exports = function(app) {
       login: userLoggedIn(req)
     });
   });
+  
   app.get("/search", (req, res) => {
     res.render("search", {
       login: userLoggedIn(req)

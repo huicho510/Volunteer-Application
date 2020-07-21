@@ -2,6 +2,11 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
+
+/* const query = require("../public/js/search"); */
+
+const Op = require("sequelize").Op;
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -30,6 +35,22 @@ module.exports = function(app) {
       });
   });
 
+  app.get("/api/search", (req, res) => {
+    db.Event.findAll({
+      limit: 10,
+      where: {
+        title: { [Op.like]: "%" + query + "%" }, 
+        details: { [Op.like]:  "%" + query + "%" } }
+    }) 
+      .then(() => {
+        res.redirect(307, "/api/search"); //IDK where it goes after the search term
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
@@ -51,15 +72,19 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/search", (req, res) => {
+  app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
+    console.log(db);
     db.Event.findAll({}).then(dbEvent => {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbEvent);
-    });
+    })
+      .catch(err => {
+        res.status(401).json(err);
+      });
   });
 
-  app.post("/api/search", (req, res) => {
+  app.post("/api/event", (req, res) => {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
