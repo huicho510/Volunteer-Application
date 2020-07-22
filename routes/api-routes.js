@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/add", (req, res) => {
-    db.events.create({
+    db.Event.create({
       title: req.body.title,
       city: req.body.city,
       state: req.body.state,
