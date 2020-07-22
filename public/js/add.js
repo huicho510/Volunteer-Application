@@ -5,7 +5,7 @@ $(document).ready(() => {
   
   const addEventForm = $("form.addEvent");
   const titleInput = $("input.title");
-  const addressInput = $("input.address")
+  const addressInput = $("input.address");
   const cityInput = $("input.city");
   const stateInput =$("input.state");
 
