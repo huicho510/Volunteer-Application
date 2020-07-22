@@ -105,7 +105,7 @@ module.exports = function(app) {
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
     db.Event.create({
-      event_name: req.body.event_name,
+      title: req.body.title,
       city: req.body.city
     })
       .then(dbEvent => {
