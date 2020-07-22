@@ -2,6 +2,8 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
+const Op = require("sequelize").Op;
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -30,6 +32,41 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/add", (req, res) => {
+    db.events.create({
+      title: req.body.title,
+      city: req.body.city,
+      state: req.body.state,
+      address: req.body.address
+    })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.get("/api/search", (req, res) => {
+    console.log(req);
+    db.Event.findAll({
+      limit: 10,
+      where: {
+        title: { [Op.like]: "%" + req + "%" }, 
+        details: { [Op.like]:  "%" + req + "%" },
+        address: { [Op.like]:  "%" + req + "%" },
+        city: { [Op.like]:  "%" + req + "%" },
+        state: { [Op.like]:  "%" + req + "%" },
+        zip: { [Op.like]:  "%" + req + "%" } }
+    })
+      .then((dbEvent) => {
+        console.log(req);
+        console.log(res);
+        res.json(dbEvent);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
@@ -51,15 +88,19 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/search", (req, res) => {
+  app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
+    console.log(db);
     db.Event.findAll({}).then(dbEvent => {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbEvent);
-    });
+    })
+      .catch(err => {
+        res.status(401).json(err);
+      });
   });
 
-  app.post("/api/search", (req, res) => {
+  app.post("/api/event", (req, res) => {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
