@@ -7,7 +7,7 @@ $(document).ready(() => {
   const titleInput = $("input.title");
   const addressInput = $("input.address");
   const cityInput = $("input.city");
-  const stateInput =$("input.state");
+  const stateInput =$("select.state");
 
   // Adding event listeners for deleting, editing, and adding todos;
   // $(document).on("click", "button.delete", deleteEvent);
