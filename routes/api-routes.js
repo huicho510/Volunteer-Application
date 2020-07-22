@@ -32,6 +32,18 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/add", (req, res) => {
+    db.event.create({
+      title: req.body.title,
+      city: req.body.city,
+      state: req.body.state,
+      address: req.body.address
+    })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
   app.get("/api/search", (req, res) => {
     console.log(req);
     db.Event.findAll({
