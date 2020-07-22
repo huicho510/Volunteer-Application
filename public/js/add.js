@@ -24,7 +24,7 @@ $(document).ready(() => {
     const city = cityInput.val().trim();
     const state = stateInput.val();
     const address = addressInput.val().trim();
-    console.log(title, city, state);
+    console.log(title, city, state, address);
     if (!title || city || state || address) {
       return;
     }
