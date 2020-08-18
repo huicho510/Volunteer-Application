@@ -4,6 +4,8 @@
 
 This website is a central location for volunteers and charity organizations to communicate and work together to successfully help communities. Organizations may post their event details along with volunteer opportunities that can then be found by by potential volunteers.
 
+![image](https://user-images.githubusercontent.com/59625096/90561106-0aed1200-e155-11ea-807e-e0d72f63c3e5.png)
+
 ## Table of Contents
 
 * [Installation](#installation)
