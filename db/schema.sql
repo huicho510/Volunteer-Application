@@ -1,6 +1,7 @@
-DROP IF EXISTS volunteer_db;
-CREATE DATABASE volunteer_db;
-USE volunteer_db;
+
+
+CREATE DATABASE volunteers_db;
+USE volunteers_db;
 
 CREATE TABLE volunteers
 (
@@ -35,6 +36,5 @@ CREATE TABLE events
     zip int(5) NOT NULL,
     details varchar(2000) NOT NULL, 
     timeFrame varchar(20) NOT NULL,
-    postedDate varchar(20) NOT NULL,
     PRIMARY KEY (id)
 );

@@ -4,11 +4,14 @@ const session = require("express-session");
 const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
 
+const compression = require('compression')
+
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 
 const app = express();
+app.use(compression({ filter: shouldCompress }))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -20,6 +23,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+ 
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 
 // Requiring our routes
 require("./routes/html-routes.js")(app);

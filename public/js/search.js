@@ -18,38 +18,29 @@ $(document).ready(() => {
   // Our initial todos array
   let opp = [];
 
-  search();
-  // Getting todos from database when page loads
+   search();
+  
   
   searchForm.on("click", event => {
     event.preventDefault();
     const searchQuery = searchInput.val().trim();
     console.log(searchQuery);
-    if (!searchQuery) {
-      return;
-    }
     search(searchQuery);
   });
 
   function search(searchQuery) {
-    $.get("/api/search", {
+    $.get("/api/event", {
       searchQuery: searchQuery,
     })
       .then(() => {
         initializeRows();
-      })
-      .catch(searchErr);
+      })  
   }
 
-  function searchErr(err) {
-    $("#alert.msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
-
-
-
-
-
+  // function searchErr(err) {
+  //   $("#alert.msg").text(err.responseJSON);
+  //   $("#alert").fadeIn(500);
+  // }
 
 
   function initializeRows() {
@@ -62,7 +53,7 @@ $(document).ready(() => {
   }
 
   function getEvents() {
-    $.get("/api/search", data => {
+    $.get("/api/event", data => {
       opp = data;
       console.log(opp);
       initializeRows();
@@ -77,7 +68,7 @@ function createNewRow(opp) {
       "<li class='list-group-item new-item'>",
       "<span>",
       "<h5>",
-      opp.event_name,
+      opp.title,
       "</h5>",
       opp.address,
       "<p>",
@@ -98,9 +89,9 @@ function createNewRow(opp) {
     ].join("")
   );
 
-  $newInputRow.find("button.delete").data("id", opp.id);
-  $newInputRow.find("input.edit").css("display", "none");
+ 
   $newInputRow.data("event", opp);
 
   return $newInputRow;
 }
+

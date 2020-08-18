@@ -52,8 +52,6 @@ module.exports = function(app) {
   });
 
   app.get("/add", (req, res) => {
-    // If the user already has an account send them to the members page
-
     res.render("add", {
       login: userLoggedIn(req)
     });

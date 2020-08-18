@@ -1,7 +1,5 @@
 $(document).ready(() => {
-  // Getting a reference to the input field where user adds a new todo;
-  // let $newItemInput = $("input.new-search");
-  // Our new todos will go inside the todoContainer;
+
   
   const $addEventForm = $("form.addEvent");
   const $titleInput = $("input.title");
@@ -12,13 +10,6 @@ $(document).ready(() => {
   const $detailInput = $("textarea.details");
   const $hoursInput = $("input.hours")
  
-
-
-  // Our initial todos array
-  // Getting todos from database when page loads
-
-
-
     
   $addEventForm.on("submit", event => {
     event.preventDefault();
@@ -45,10 +36,7 @@ $(document).ready(() => {
   });
   
   function addEvent(title, city, state, address, zip, details, timeFrame) {
-    $.ajax({
-     url: "/api/event",
-     method:"POST",
-     data:{
+    $.post("/api/event", {
       title: title,
       city: city,
       state: state,
@@ -56,23 +44,11 @@ $(document).ready(() => {
       zip: zip,
       details: details,
       timeFrame: timeFrame
-     } 
-    }) .then(() => {
-      window.location.replace("/add");
     })
-    // $.post("/api/event", {
-    //   title: title,
-    //   city: city,
-    //   state: state,
-    //   address: address,
-    //   zip: zip,
-    //   details: details,
-    //   timeFrame: timeFrame
-    // })
-    //   .then(() => {
-    //     window.location.replace("/add");
-    //   })
-    //   .catch(addEventErr);
+      .then(() => {
+        window.location.replace("/add");
+      })
+      .catch(addEventErr);
   }
 
 

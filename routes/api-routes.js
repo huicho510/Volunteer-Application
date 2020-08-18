@@ -12,7 +12,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -22,57 +22,16 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
-        res.status(401).json(err);
-      });
-  });
-
-  app.post("/api/event", function(req, res) {
-    console.log(req.body)
-    db.Event.create({
-      title: req.body.title,
-      city: req.body.city,
-      state: req.body.state,
-      address: req.body.address,
-      zip: req.body.zip,
-      details: req.body.details,
-      timeFrame: req.body.timeFrame,
-    })
-      .then(function(dbEvent) {
-        res.json(dbEvent);
-      })
-
       .catch((err) => {
-        console.log(err);
-      });
-  });
-
-  app.get("/api/search", (req, res) => {
-    console.log(req);
-    db.Event.findAll({
-      limit: 10,
-      where: {
-        title: { [Op.like]: "%" + req + "%" }, 
-        details: { [Op.like]:  "%" + req + "%" },
-        address: { [Op.like]:  "%" + req + "%" },
-        city: { [Op.like]:  "%" + req + "%" },
-        state: { [Op.like]:  "%" + req + "%" },
-        zip: { [Op.like]:  "%" + req + "%" } }
-    })
-      .then((dbEvent) => {
-        console.log(req);
-        console.log(res);
-        res.json(dbEvent);
-      })
-      .catch(err => {
         res.status(401).json(err);
       });
   });
+
   
 
   // Route for logging user out
@@ -91,7 +50,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
@@ -99,14 +58,62 @@ module.exports = function(app) {
   app.get("/api/event", (req, res) => {
     // findAll returns all entries for a table when used with no options
     console.log(db);
-    db.Event.findAll({}).then(dbEvent => {
-      // We have access to the todos as an argument inside of the callback function
-      res.json(dbEvent);
-    })
-      .catch(err => {
+    db.Event.findAll({})
+      .then((dbEvent) => {
+        // We have access to the todos as an argument inside of the callback function
+        res.json(dbEvent);
+      })
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
 
-  
+  app.get("/api/search/:search?", (req, res) => {
+    console.log(req.query.search);
+    const test = req.query.search; // this route is a work in progress
+    console.log(typeof(test))
+    db.Event.findAll({
+      limit: 10,
+      where: {
+        [Op.like]: {title: "%" + test + "%"}
+        // title: {
+        //   [Op.like]: '%pantry%'
+        // },
+      }
+      // details: { [Op.like]:  "%" + req + "%" },
+      // address: { [Op.like]:  "%" + req + "%" },
+      // city:  "%",
+      // state: { [Op.like]:  "%" + req + "%" },
+      // zip: { [Op.like]:  "%" + req + "%" } }
+    })
+      .then((dbEvent) => {
+        // console.log(req);
+        // console.log(res);
+        res.json(dbEvent);
+      })
+      .catch((err) => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/event", function(req, res) {
+    console.log("hello")
+    db.Event.create({
+      title: req.body.title,
+      city: req.body.city,
+      state: req.body.state,
+      address: req.body.address,
+      zip: req.body.zip,
+      details: req.body.details,
+      timeFrame: req.body.timeFrame,
+    })
+      .then(function(dbEvent) {
+        res.json(dbEvent);
+      })
+
+      .catch((err) => {
+        res.status(401).json(err);
+      });
+  });
 };
+
