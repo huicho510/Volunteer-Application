@@ -32,15 +32,23 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/add", (req, res) => {
-    db.events.create({
+  app.post("/api/event", function(req, res) {
+    console.log(req.body)
+    db.Event.create({
       title: req.body.title,
       city: req.body.city,
       state: req.body.state,
-      address: req.body.address
+      address: req.body.address,
+      zip: req.body.zip,
+      details: req.body.details,
+      timeFrame: req.body.timeFrame,
     })
-      .catch(err => {
-        res.status(401).json(err);
+      .then(function(dbEvent) {
+        res.json(dbEvent);
+      })
+
+      .catch((err) => {
+        console.log(err);
       });
   });
 
@@ -100,22 +108,5 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/event", (req, res) => {
-    // create takes an argument of an object describing the item we want to
-    // insert into our table. In this case we just we pass in an object with a text
-    // and complete property (req.body)
-    db.Event.create({
-      event_name: req.body.event_name,
-      city: req.body.city
-    })
-      .then(dbEvent => {
-        // We have access to the new todo as an argument inside of the callback function
-        res.json(dbEvent);
-      })
-      .catch((err) => {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  });
+  
 };

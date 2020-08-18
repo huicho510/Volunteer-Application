@@ -3,46 +3,79 @@ $(document).ready(() => {
   // let $newItemInput = $("input.new-search");
   // Our new todos will go inside the todoContainer;
   
-  const addEventForm = $("form.addEvent");
-  const titleInput = $("input.title");
-  const addressInput = $("input.address");
-  const cityInput = $("input.city");
-  const stateInput =$("value.state");
+  const $addEventForm = $("form.addEvent");
+  const $titleInput = $("input.title");
+  const $addressInput = $("input.address");
+  const $cityInput = $("input.city");
+  const $stateInput =$("input.state");
+  const $zipInput = $("input.zip");
+  const $detailInput = $("textarea.details");
+  const $hoursInput = $("input.hours")
+ 
 
-  // Adding event listeners for deleting, editing, and adding todos;
-  // $(document).on("click", "button.delete", deleteEvent);
-  // $(document).on("click", ".new-item", selectEvent);
-  // $(document).on("blur", ".new-item", cancelEdit);
-  // $(document).on("submit", "#todo-form", insertTodo);
-    
+
   // Our initial todos array
   // Getting todos from database when page loads
+
+
+
     
-  addEventForm.on("submit", event => {
+  $addEventForm.on("submit", event => {
     event.preventDefault();
-    const title = titleInput.val().trim();
-    const city = cityInput.val().trim();
-    const state = stateInput.val();
-    const address = addressInput.val().trim();
-    console.log(title, city, state, address);
-    if (!title || city || state || address) {
-      return;
-    }
-    addEvent(title, city, state), address;
+    const eventData = {
+      title: $titleInput.val().trim(),
+      city: $cityInput.val().trim(),
+      state: $stateInput.val(),
+      address: $addressInput.val().trim(),
+      zip: $zipInput.val().trim(),
+      details: $detailInput.val().trim(),
+      timeFrame: $hoursInput.val().trim()
+
+    };
+    console.log(eventData);
+     
+    addEvent(eventData.title,eventData.city, eventData.state, eventData.address, eventData.zip, eventData.details, eventData.timeFrame );
+     $titleInput.val("");
+     $cityInput.val("");
+     $stateInput.val("");
+     $addressInput.val("");
+     $zipInput.val("");
+     $detailInput.val("");
+     $hoursInput.val("");
   });
   
-  function addEvent(title, city, state, address) {
-    $.post("/api/add", {
+  function addEvent(title, city, state, address, zip, details, timeFrame) {
+    $.ajax({
+     url: "/api/event",
+     method:"POST",
+     data:{
       title: title,
       city: city,
       state: state,
-      address: address
+      address: address,
+      zip: zip,
+      details: details,
+      timeFrame: timeFrame
+     } 
+    }) .then(() => {
+      window.location.replace("/add");
     })
-      .then(() => {
-        window.location.replace("/add");
-      })
-      .catch(addEventErr);
+    // $.post("/api/event", {
+    //   title: title,
+    //   city: city,
+    //   state: state,
+    //   address: address,
+    //   zip: zip,
+    //   details: details,
+    //   timeFrame: timeFrame
+    // })
+    //   .then(() => {
+    //     window.location.replace("/add");
+    //   })
+    //   .catch(addEventErr);
   }
+
+
 
   function addEventErr(err) {
     $("#alert .msg").text(err.responseJSON);
